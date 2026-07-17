@@ -1,0 +1,23 @@
+inventory = {
+    "Bread": [30, 50, 10, False],
+    "Eggs": [120, 200, 40, False],
+    "Milk": [60, 100, 20, False],
+    "Apples": [15, 50, 15, False]
+}
+discount_threshold = 100
+
+print("Processing started")
+
+for item, details in inventory.items():
+    print(f"Processing {item}")
+    current_stock, minimum_stock, restock_quantity, sale_status = details
+
+    while current_stock < minimum_stock:
+        current_stock += restock_quantity
+
+    if current_stock > discount_threshold and not sale_status:
+        sale_status = True
+
+    inventory[item] = [current_stock, minimum_stock, restock_quantity, sale_status]
+
+print("Processing completed")
